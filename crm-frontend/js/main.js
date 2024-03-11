@@ -1,7 +1,7 @@
+import { clientManager } from './client.js';
 import {
   getClients, saveClient, removeClient, changeClient, searchClient, apiURL,
 } from './api.js';
-
 import {
   vk, phone, mail, facebook, leter,
 } from './svg.js';
@@ -9,7 +9,9 @@ import {
 let removedClient = null;
 let changedClient = null;
 
-// добавление в дом элементов
+/**
+ * добавление в дом элементов
+ */
 const $headerInput = document.getElementById('header-inp');
 const $tableId = document.getElementById('main__table');
 const $createButton = document.getElementById('button-create');
@@ -41,7 +43,9 @@ const $errorsWrap = document.getElementById('errors');
 const $errorsWrapChange = document.getElementById('errors__change');
 const DEFAULT_ERROR_MESSAGE = 'Что-то пошло не так...';
 
-// Функция очищения инпутов
+/**
+* Функция очищения инпутов
+*/
 function clearInputs() {
   $nameInput.value = '';
   $surnameInput.value = '';
@@ -49,7 +53,9 @@ function clearInputs() {
   searchDivChange.innerHTML = '';
 }
 
-// Функция очищения инпутов
+/**
+* Функция очищения инпутов
+*/
 function clearInputes() {
   $namesInput.value = '';
   $surnamesInput.value = '';
@@ -58,27 +64,36 @@ function clearInputes() {
   changeModalId.innerHTML = '';
 }
 
-// Функция очищения инпутов контактов
+/**
+ * Функция очищения инпутов контактов
+ */
 function clearInpContact() {
   $newContacts.innerHTML = '';
 }
 
-// Функция открытия модального окна создания клиента
+
+/**
+ * Функция открытия модального окна создания клиента
+ */
 $createButton.addEventListener('click', () => {
   $modalNew.classList.add('open');
   clearInputs();
 });
 
-// Функция закрытия модального окна создания клиента
+/**
+ * Функция закрытия модального окна создания клиента
+ */
 $removeButton.addEventListener('click', () => {
   $modalNew.classList.remove('open');
   clearInpContact();
   clearError();
-  clearError();
+  clearError();  
   clearInputs();
 });
 
-// Функция закрытия модального окна создания клиента
+/**
+* Функция закрытия модального окна создания клиента
+*/
 $removeButtonTwo.addEventListener('click', () => {
   $modalNew.classList.remove('open');
   clearInpContact();
@@ -87,7 +102,9 @@ $removeButtonTwo.addEventListener('click', () => {
   clearInputs();
 });
 
-// Функция сортировки таблицы
+/**
+ * Функция сортировки таблицы
+ */
 const createSortHandler = (prop) => function sortTable() {
   clientManager.sortBy(prop);
   renderTable();
@@ -98,7 +115,9 @@ const sortTableDate = (prop) => function sortTable() {
   renderTable();
 };
 
-// Функция создания таблицы
+/**
+ * Функция создания таблицы
+ */
 function renderTable(clientList = clientManager.list) {
   const table = document.createElement('table');
   const thead = document.createElement('thead');
@@ -155,28 +174,32 @@ function renderTable(clientList = clientManager.list) {
   $tableId.append(table);
 }
 
-// Функции проверки длинны дива с контактами
+/**
+ * Функции проверки длинны дива с контактами
+ */
 function lenContactDeletes() {
   const len = $modalForm.querySelectorAll('.form__contact').length;
-  if (len >= 10) {
+  if (len >= 10) {    
     $modalContacts.classList.add('btn__off');
-  }
-  if (len <= 9) {
+  } 
+  if (len <= 9) {    
     $modalContacts.classList.remove('btn__off');
   }
 }
 
 function lenContactDelete() {
   const len = $modalChageForm.querySelectorAll('.form__contact').length;
-  if (len >= 10) {
+  if (len >= 10) {    
     $modalContact.classList.add('btn__off');
-  }
-  if (len <= 9) {
+  } 
+  if (len <= 9) {    
     $modalContact.classList.remove('btn__off');
   }
 }
 
-// Функция разметки ошибки
+/**
+ * Функция разметки ошибки
+ */
 function wrapperError(errorText) {
   const text = document.createElement('p');
   text.classList.add('text__error');
@@ -185,7 +208,9 @@ function wrapperError(errorText) {
   $errorsWrap.append(text);
 }
 
-// Функция разметки ошибки
+/**
+ * Функция разметки ошибки
+ */
 function wrappersError(errorText) {
   const text = document.createElement('p');
   text.classList.add('text__error');
@@ -194,17 +219,23 @@ function wrappersError(errorText) {
   $errorsWrapChange.append(text);
 }
 
-// Функция очищения дива с ошибкой
+/**
+ * Функция очищения дива с ошибкой
+ */
 function clearError() {
-  $errorsWrap.innerHTML = '';
+  $errorsWrap.innerHTML = '';  
 };
 
-// Функция очищения дива с ошибкой
+/**
+ * Функция очищения дива с ошибкой
+ */
 function clearsError() {
-  $errorsWrapChange.innerHTML = '';
+  $errorsWrapChange.innerHTML = '';  
 };
 
-// Функция проверки валидации инпутов
+/**
+ * Функция проверки валидации инпутов
+ */
 function validateClients(newClientData) {
   clearError();
   if (newClientData.ok) return true;
@@ -228,9 +259,12 @@ function validateClients(newClientData) {
 
     return false;
   }
+
 }
 
-// Функция проверки валидации инпутов
+/**
+ * Функция проверки валидации инпутов
+ */
 function validatesClients(newClientData) {
   if (newClientData.ok) return true;
 
@@ -253,9 +287,12 @@ function validatesClients(newClientData) {
 
     return false;
   }
+
 }
 
-// Функция отрисовки добавления контакт
+/**
+* Функция отрисовки добавления контакта
+*/
 function createNewContact(contactData) {
   const formContact = document.createElement('div');
   const selectNew = document.createElement('select');
@@ -307,7 +344,7 @@ function createNewContact(contactData) {
     }
     inputNew.value = contactData.value;
   }
-  buttonNewClear.addEventListener('click', () => {
+  buttonNewClear.addEventListener('click', () => {    
     formContact.remove();
     lenContactDeletes();
     lenContactDelete();
@@ -318,21 +355,27 @@ function createNewContact(contactData) {
   return formContact;
 }
 
-// Функция клика для отрисовки добавления контакта
+/**
+ * Функция клика для отрисовки добавления контакта
+ */
 $modalContact.addEventListener('click', () => {
   const changeClientContact = createNewContact();
   searchDivChange.append(changeClientContact);
   lenContactDelete();
 });
 
-// Функция клика на кнопку добавить контакт
+/**
+ * Функция клика на кнопку добавить контакт
+ */
 $modalContacts.addEventListener('click', () => {
   const formContact = createNewContact();
   $newContacts.append(formContact);
   lenContactDeletes();
 });
 
-// Функция создания нового клиента
+/**
+ * Функция создания нового клиента
+ */
 $modalForm.addEventListener('submit', async (event) => {
   event.preventDefault();
   const allContact = $modalForm.querySelectorAll('#create__contacts .form__contact');
@@ -352,7 +395,9 @@ $modalForm.addEventListener('submit', async (event) => {
     contacts: fullContactsArr,
   };
 
-// Функция сохранения объекта на сервер
+  /**
+   * Функция сохранения объекта на сервер
+   */
   const clientData = await saveClient(newClientData);
   if (!validateClients(clientData)) return;
 
@@ -365,7 +410,10 @@ $modalForm.addEventListener('submit', async (event) => {
   $modalNew.classList.remove('open');
 });
 
-// Функция создания разметки для контактов
+/**
+ * Функция создания разметки для контактов
+ */
+
 function createContactElement(contact) {
   const elementLi = document.createElement('li');
   const elementBtn = document.createElement('button');
@@ -430,7 +478,7 @@ const wrapperContacts = function (newClient) {
   const contactsWrap = document.createElement('div');
   contactsWrap.classList.add('container__contacts', 'flex');
   const contactsList = document.createElement('ul');
-  contactsList.classList.add('list__reset', 'list__contacts');
+  contactsList.classList.add('list__reset', 'list__contacts');  
   const contact = newClient.contacts;
   const flag = contact.length > 4 ? 4 : contact.length;
 
@@ -449,7 +497,9 @@ const wrapperContacts = function (newClient) {
   return contactsWrap;
 };
 
-// Функция удаления студента
+/**
+* Функция удаления студента
+*/
 $modalDeleteButton.onclick = () => {
   removeClient(removedClient);
   clientManager.removeClient(removedClient);
@@ -457,8 +507,9 @@ $modalDeleteButton.onclick = () => {
   removedClient = null;
   renderTable();
 };
-
-// Функция создания строки таблицы
+/**
+* Функция создания строки таблицы
+*/
 function createUserTr(newClient) {
   const tr = document.createElement('tr');
   const clientId = document.createElement('td');
@@ -488,14 +539,18 @@ function createUserTr(newClient) {
   buttonChange.classList.add('btn__change-client', 'btn__reset');
   buttonDelete.textContent = 'Удалить';
   buttonDelete.classList.add('btn__delete-client', 'btn__reset');
-
-  // Функция открытия модального окна удаления клиента
+  
+  /**
+   * Функция открытия модального окна удаления клиента
+   */
   buttonDelete.addEventListener('click', () => {
     removedClient = newClient;
     $modalDelete.classList.add('open');
   });
-
-  // Функция закрытия модального окна удаления клиента
+  
+  /**
+   * Функция закрытия модального окна удаления клиента
+   */
   $modalReset.addEventListener('click', () => {
     $modalDelete.classList.remove('open');
     removedClient = null;
@@ -504,8 +559,10 @@ function createUserTr(newClient) {
     $modalDelete.classList.remove('open');
     removedClient = null;
   });
-
-  // Функция открытия окна изменения клиента.
+  
+  /**
+   * Функция открытия окна изменения клиента.
+   */
   buttonChange.addEventListener('click', () => {
     changedClient = newClient;
     changeModalId.innerHTML = `Id:${newClient.id}`;
@@ -518,8 +575,10 @@ function createUserTr(newClient) {
     });
     $modalChanged.classList.add('open');
   });
-
-// Функция закрытия модального окна изменения клиента
+  
+  /**
+  * Функция закрытия модального окна изменения клиента
+  */
   $changeClose.addEventListener('click', () => {
     $modalChanged.classList.remove('open');
     clearsError();
@@ -540,7 +599,9 @@ function createUserTr(newClient) {
   return tr;
 }
 
-// Функция перезаписи клиент
+/**
+* Функция перезаписи клиента
+*/
 $modalChageForm.addEventListener('submit', async (event) => {
   event.preventDefault();
   const allContact = $modalChageForm.querySelectorAll('#create__contact .form__contact');
@@ -567,7 +628,9 @@ $modalChageForm.addEventListener('submit', async (event) => {
     contacts: fullContactsArr,
   };
 
-// Функция изменения объекта на сервере
+  /**
+   * Функция изменения объекта на сервере
+   */
   const changeClientDatas = await changeClient(changeClientData, changedClient.id);
   if (!validatesClients(changeClientDatas)) return;
   clientManager.addClients(await getClients());
@@ -576,7 +639,9 @@ $modalChageForm.addEventListener('submit', async (event) => {
   renderTable(clientManager.list);
 });
 
-// Функция поиска клиента
+/**
+ * Функция поиска клиента
+ */
 $headerInput.addEventListener('input', async () => {
   setTimeout(async () => {
     const searchData = await searchClient();
@@ -584,4 +649,9 @@ $headerInput.addEventListener('input', async () => {
     renderTable(clientManager.searchList);
   }, 300);
 });
+
+const dataList = await getClients();
+clientManager.addClients(dataList);
+renderTable(clientManager.list);
+window.clientManager = clientManager;
 
