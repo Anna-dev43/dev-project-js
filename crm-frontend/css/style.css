@@ -403,7 +403,7 @@ tbody tr {
     flex-direction: column;
     align-items: center;
     width: 450px;
-    min-height: 400px;  
+    min-height: 400px;
     margin-top: 50px;
     margin-bottom: 50px;
     padding: 30px 0px;
@@ -429,7 +429,7 @@ tbody tr {
     align-items: center;
     justify-content: center;
     padding-left: 24px;
-    padding-right: 24px;    
+    padding-right: 24px;
     align-items: start;
     width: 100%;
 }
@@ -656,7 +656,7 @@ tbody tr {
     flex-direction: column;
     align-items: center;
     width: 450px;
-    min-height: 400px;  
+    min-height: 400px;
     margin-top: 50px;
     margin-bottom: 50px;
     padding: 30px 0px;
@@ -738,7 +738,6 @@ tbody tr {
     flex-wrap: wrap;
     align-items: center;
     justify-content: left;
-    flex-shrink: 0;
 }
 
 .container__contacts {
@@ -778,11 +777,11 @@ tbody tr {
     background-color: var(--color-grey-inp);
 }
 
-.form__contact:not(:last-child) {    
+.form__contact:not(:last-child) {
     margin-bottom: 10px;
 }
 
-.btn__flag {    
+.btn__flag {
     width: 16px;
     height: 16px;
     background: url(../img/radius.svg);

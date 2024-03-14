@@ -152,7 +152,7 @@
     .table {
         width: 728px;
     }
-   
+
     .td__initial {
         width: 100px;
     }
@@ -202,3 +202,10 @@
         padding: 10px 5px;
     }
 }
+
+@media (max-width: 460px) {
+  .modal__box {
+    width: 300px;
+  }
+}
+
